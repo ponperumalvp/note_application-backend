@@ -34,7 +34,6 @@ export const login = async (req, res) => {
     res.json({
       msg: "login successful",
       userId: user._id,
-      Email: user.email,
     });
   } catch (err) {
     console.log(" login errMsg: " + err);

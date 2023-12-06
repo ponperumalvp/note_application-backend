@@ -23,7 +23,7 @@ export const createNote = async (req, res) => {
 
 export const getNote = async (req, res) => {
   try {
-    const user = await userModel.findById(req.params._id);
+    const user = await userModel.findById(req.params.userId);
     console.log(user);
     // console.log(user);
     const notes = await Notes.find({ userOwner: { $in: user._id } });
