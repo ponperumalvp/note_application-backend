@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { userRouter } from "./src/routes/userRouter";
+import { userRouter } from "./src/routes/userRouter.js";
+import { noteRouter } from "./src/routes/noteRoute.js";
 
 dotenv.config();
 
@@ -43,8 +44,9 @@ mongoose
   });
 
 app.use("/users", userRouter);
+app.use("/notes", noteRouter);
 
 app.listen(port, () => {
   //   connectDB();
-  console.log(`server listening at http://localhost:${port}/`);
+  console.log(`server listening at http://localhost:${port}`);
 });
