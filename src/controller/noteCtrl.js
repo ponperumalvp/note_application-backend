@@ -28,7 +28,7 @@ export const getNote = async (req, res) => {
     // console.log(user);
     const notes = await Notes.find({ userOwner: { $in: user._id } });
     res.json(notes);
-    // console.log(notes);
+    console.log(notes);
   } catch (err) {
     console.log("get errMsg: " + err);
     res.json({ message: "Internal error try again!" });
