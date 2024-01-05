@@ -3,18 +3,16 @@ import userModel from "../model/userModel.js";
 
 export const createNote = async (req, res) => {
   try {
-    const { title, content, date, userOwner } = req.body;
+    const { notes, userOwner } = req.body;
 
     const newNote = new Notes({
-      title,
-      content,
-      date,
+      notes,
       userOwner,
     });
     console.log(userOwner);
     console.log(newNote);
     await newNote.save();
-    res.json("note created");
+    res.json(newNote);
   } catch (err) {
     console.log("errMsg: " + err);
     res.json({ message: "Internal error try again!" });
