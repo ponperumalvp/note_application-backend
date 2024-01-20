@@ -1,11 +1,11 @@
-import Notes from "../model/noteModel.js";
+import BussinessNotes from "../model/bussinessNoteModel.js";
 import userModel from "../model/userModel.js";
 
-export const createNote = async (req, res) => {
+export const createBussinessNote = async (req, res) => {
   try {
     const { notes, userOwner } = req.body;
 
-    const newNote = new Notes({
+    const newNote = new BussinessNotes({
       notes,
       userOwner,
     });
@@ -19,23 +19,26 @@ export const createNote = async (req, res) => {
   }
 };
 
-export const getNote = async (req, res) => {
+export const getBussinessNote = async (req, res) => {
   try {
     const user = await userModel.findById(req.params.userId);
-
-    const notes = await Notes.find({ userOwner: { $in: user._id } });
+    console.log(user);
+    // console.log(user);
+    const notes = await BussinessNotes.find({ userOwner: { $in: user._id } });
     res.json(notes);
   } catch (err) {
     console.log("get errMsg: " + err);
     res.json({ message: "Internal error try again!" });
   }
 };
-export const deleteNote = async (req, res) => {
+export const deleteBussinessNote = async (req, res) => {
   try {
-    const user = await Notes.findById(req.params.id);
+    const user = await BussinessNotes.findById(req.params.id);
     console.log("id", user);
 
-    const deleteNote = await Notes.findOneAndDelete({ _id: req.params.id });
+    const deleteNote = await BussinessNotes.findOneAndDelete({
+      _id: req.params.id,
+    });
     res.json(deleteNote);
     console.log(deleteNote);
   } catch (err) {

@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { userRouter } from "./src/routes/userRouter.js";
 import { noteRouter } from "./src/routes/noteRoute.js";
+import { bussinessNoteRouter } from "./src/routes/bussinessNoteRoute.js";
 
 dotenv.config();
 
@@ -45,6 +46,7 @@ mongoose
 
 app.use("/users", userRouter);
 app.use("/notes", noteRouter);
+app.use("/bussinessNotes", bussinessNoteRouter);
 
 app.listen(port, () => {
   //   connectDB();

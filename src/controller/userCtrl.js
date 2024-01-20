@@ -23,7 +23,12 @@ export const register = async (req, res) => {
     await newUser.save();
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET_KEY);
 
-    res.json({ message: "register successful", userId: newUser._id, token });
+    res.json({
+      message: "register successful",
+      userId: newUser._id,
+      token,
+      userName,
+    });
   } catch (err) {
     console.log("errMsg: " + err);
     res.json({ message: "Internal error try again!" });
@@ -46,6 +51,7 @@ export const login = async (req, res) => {
     console.log("token:", token);
     res.json({
       userId: user._id,
+      userName: user.userName,
       token,
       message: "login successful",
     });
