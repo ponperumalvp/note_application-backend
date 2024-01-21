@@ -20,12 +20,6 @@ mongoose.set("strictQuery", false);
 
 const url = process.env.MONGODB_URL;
 
-var options = {
-  authSource: "admin",
-  user: "admin",
-  pass: "ponperumal",
-};
-
 // const connectDB = async () => {
 //   try {
 //     await mongoose.connect(url, options);
@@ -36,7 +30,7 @@ var options = {
 // };
 
 mongoose
-  .connect(url, options)
+  .connect(url)
   .then(() => {
     console.log("connected to mongodb");
   })
