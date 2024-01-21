@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /backup_folder
+.env
 
 # testing
 /coverage
