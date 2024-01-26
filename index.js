@@ -11,9 +11,13 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
 
+const corsOptions = {
+  origin: true,
+};
+
 //Middleware
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose.set("strictQuery", false);
@@ -44,5 +48,5 @@ app.use("/bussinessNotes", bussinessNoteRouter);
 
 app.listen(port, () => {
   //   connectDB();
-  console.log(`server listening at http://localhost:${port}`);
+  console.log(`"server listening at" + ${port}`);
 });
