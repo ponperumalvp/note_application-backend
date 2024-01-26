@@ -35,7 +35,7 @@ mongoose
     console.log("connected to mongodb");
   })
   .catch((err) => {
-    console.log("not able to connect");
+    console.log("not able to connect" + err);
   });
 
 app.use("/users", userRouter);
