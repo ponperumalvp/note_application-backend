@@ -30,7 +30,6 @@ export const register = async (req, res) => {
       userName,
     });
   } catch (err) {
-    console.log("errMsg: " + err);
     res.json({ message: "Internal error try again!" });
   }
 };
@@ -43,6 +42,7 @@ export const login = async (req, res) => {
     if (!user) {
       return res.json({ message: "User not Found" });
     }
+
     const passwordVerify = await bcrypt.compare(password, user.password);
     if (!passwordVerify) {
       return res.json({ message: "Invalid credentials" });
@@ -56,7 +56,7 @@ export const login = async (req, res) => {
       message: "login successful",
     });
   } catch (err) {
-    console.log(" login errMsg: " + err);
+    console.log(err);
     res.json({ message: "Internal error try again!" });
   }
 };
