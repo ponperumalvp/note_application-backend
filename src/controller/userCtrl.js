@@ -7,8 +7,6 @@ export const register = async (req, res) => {
 
     const user = await Users.findOne({ email });
 
-    console.log("foundUser:", user);
-
     if (user) {
       return res.json({ message: "user already exists" });
     }
@@ -18,7 +16,6 @@ export const register = async (req, res) => {
       email: email,
       password: hashPassword,
     });
-    console.log(newUser);
 
     await newUser.save();
     const token = await jwt.sign(
@@ -41,7 +38,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(email);
+
     const user = await Users.findOne({ email });
     if (!user) {
       return res.json({ message: "User not Found" });
@@ -50,8 +47,8 @@ export const login = async (req, res) => {
     if (!passwordVerify) {
       return res.json({ message: "Invalid credentials" });
     }
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
-    console.log("token:", token);
+    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
+
     res.json({
       userId: user._id,
       userName: user.userName,
