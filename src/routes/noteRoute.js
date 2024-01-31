@@ -5,8 +5,8 @@ import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
-router.post("/createNote", verifyToken, createNote);
+router.post("/createNote", createNote);
 router.get("/getNote/:userId", getNote);
-router.delete("/deleteNote/:id", verifyToken, deleteNote);
+router.delete("/deleteNote/:id", deleteNote);
 
 export { router as noteRouter };
