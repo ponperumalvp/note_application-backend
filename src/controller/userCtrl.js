@@ -18,15 +18,15 @@ export const register = async (req, res) => {
     });
 
     await newUser.save();
-    const token = await jwt.sign(
-      { id: newUser._id },
-      process.env.JWT_SECRET_KEY
-    );
+    // const token = await jwt.sign(
+    //   { id: newUser._id },
+    //   process.env.JWT_SECRET_KEY
+    // );
 
     res.json({
       message: "register successful",
       userId: newUser._id,
-      token,
+      // token,
       userName,
     });
   } catch (err) {
@@ -47,12 +47,12 @@ export const login = async (req, res) => {
     if (!passwordVerify) {
       return res.json({ message: "Invalid credentials" });
     }
-    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
+    // const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
 
     res.json({
       userId: user._id,
       userName: user.userName,
-      token,
+      // token,
       message: "login successful",
     });
   } catch (err) {
